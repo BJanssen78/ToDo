@@ -1,0 +1,24 @@
+@import './variables';
+@import './mixins';
+.btn-add{
+    background-color: $btn-bg-clr;
+    color: $btn-fnt-clr;
+    &:hover{
+        background-color: $btn-bg-clr-hov;
+    }
+}
+.todo-list{
+    margin: 10px;
+}
+.todo-list-item{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    @include border-stacked;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+}
+.trash{
+    color:red;
+}

@@ -7,15 +7,15 @@
 
         <title>Bepeel Development</title>
 
-        <link href="./css/reset.css" rel="stylesheet">
-        <link href="./css/main-style.css" rel="stylesheet">
+        <link href="reset.css" rel="stylesheet">
+        <link href="main-style.css" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
         <script src="https://kit.fontawesome.com/6456d808c8.js" crossorigin="anonymous"></script>
         <!-- <script defer src="./../script/footer.js" type="text/javascript"></script> -->
         <!-- <script defer src="./../script/navigatie.js" type="text/javascript"></script> -->
         <!-- <script defer src="./../script/resources.js" type="text/javascript"></script> -->
-        <!-- <script defer src="./../java-projects/pokeAPI.js" type="text/javascript"></script> -->
+        <script defer src="./todo.js" type="text/javascript"></script>
 
     </head>
 
@@ -27,14 +27,50 @@
         <nav id="navigatie"></nav>
 
             <div id="content">
-                <div class="paintball-mobile-view">
-                    <p>minimum screen size must be 1024x768 pixels</p>
-                </div>
+                <h1>ToDo list</h1>
+                    
+                <form action="#">
+                    <div class="add-task-container">
+                        <input type="text" title="add new" placeholder="New Task"/>
+                        <button type="button" class="btn-add">Add</button>
+                    </div>
 
-                <div class="paintball-desktop-view">
-                    this is desktop
-                </div>
-                
+                    <div id="todo-list-conatiner" class="todo-list-container">
+                        <ul id="todo-list" class="todo-list">
+                            <li class="todo-list-item">
+                                <input type="checkbox" name="hallo" class="todo-item-cbx" id="1"/>
+                                <label for="">1</label>
+                                <span class="material-symbols-outlined trash">delete</span>
+                            </li>
+                            <li class="todo-list-item">
+                                <input type="checkbox" name="hallo" class="todo-item-cbx" id="2"/>
+                                <label for="">2</label>
+                                <span class="material-symbols-outlined trash">delete</span>
+                            </li>
+                            <li class="todo-list-item">
+                                <input type="checkbox" name="hallo" class="todo-item-cbx" id="3"/>
+                                <label for="">3</label>
+                                <span class="material-symbols-outlined trash">delete</span>
+                            </li>
+                            <li class="todo-list-item">
+                                <input type="checkbox" name="hallo" class="todo-item-cbx" id="4"/>
+                                <label for="">4</label>
+                                <span class="material-symbols-outlined trash">delete</span>
+                            </li>
+                            <li class="todo-list-item">
+                                <input type="checkbox" name="hallo" class="todo-item-cbx" id="5"/>
+                                <label for="">5</label>
+                                <span class="material-symbols-outlined trash">delete</span>
+                            </li>
+                            <li class="todo-list-item">
+                                <input type="checkbox" name="hallo" class="todo-item-cbx" id="6"/>
+                                <label for="">6</label>
+                                <span class="material-symbols-outlined trash">delete</span>
+                            </li>
+                        </ul>
+
+                    </div>
+                </form>
             </div>
         
         <footer id="footer"></footer>

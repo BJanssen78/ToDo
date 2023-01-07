@@ -1,1 +1,30 @@
-/*# sourceMappingURL=main-style.css.map */
+.btn-add {
+  background-color: rgb(68, 114, 196);
+  color: white;
+}
+.btn-add:hover {
+  background-color: rgb(40, 25, 196);
+}
+
+.todo-list {
+  margin: 10px;
+}
+
+.todo-list-item {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border-left: 1px solid gray;
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2em;
+}
+.todo-list-item:last-child {
+  border-bottom: 1px solid gray;
+}
+
+.trash {
+  color: red;
+}/*# sourceMappingURL=main-style.css.map */

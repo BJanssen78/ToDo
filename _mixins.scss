@@ -1,0 +1,10 @@
+@import './variables';
+
+@mixin border-stacked{
+    border-left: $bdr-thk $bdr-type $bdr-clr;
+    border-top: $bdr-thk $bdr-type $bdr-clr;
+    border-right: $bdr-thk $bdr-type $bdr-clr;
+    &:last-child{
+        border-bottom: $bdr-thk $bdr-type $bdr-clr;
+    }
+}
