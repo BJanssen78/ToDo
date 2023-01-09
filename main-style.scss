@@ -3,6 +3,7 @@
 .btn-add{
     background-color: $btn-bg-clr;
     color: $btn-fnt-clr;
+    cursor: pointer;
     &:hover{
         background-color: $btn-bg-clr-hov;
     }
@@ -15,10 +16,26 @@
     flex-direction: row;
     padding: 10px;
     @include border-stacked;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
     font-size: 1.2em;
+
+    .todo-item-cbx{
+        width: 10%;
+    }
+    .todo-list-cbx-label{
+        width: 80%;
+    }
+
 }
 .trash{
     color:red;
+    float: right;
+    width: 10%;
+    text-align: center;
+    cursor: pointer;
+}
+.done{
+    background-color: rgb(0, 255, 0);
+    text-decoration: line-through;
 }

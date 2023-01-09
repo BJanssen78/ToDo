@@ -1,6 +1,7 @@
 .btn-add {
   background-color: rgb(68, 114, 196);
   color: white;
+  cursor: pointer;
 }
 .btn-add:hover {
   background-color: rgb(40, 25, 196);
@@ -17,14 +18,28 @@
   border-left: 1px solid gray;
   border-top: 1px solid gray;
   border-right: 1px solid gray;
-  justify-content: space-between;
   align-items: center;
   font-size: 1.2em;
 }
 .todo-list-item:last-child {
   border-bottom: 1px solid gray;
 }
+.todo-list-item .todo-item-cbx {
+  width: 10%;
+}
+.todo-list-item .todo-list-cbx-label {
+  width: 80%;
+}
 
 .trash {
   color: red;
+  float: right;
+  width: 10%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.done {
+  background-color: rgb(0, 255, 0);
+  text-decoration: line-through;
 }/*# sourceMappingURL=main-style.css.map */
