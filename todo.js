@@ -5,11 +5,10 @@ const addBtn = document.querySelector('#btn-add');
 const addTask = document.querySelector('#input-task');
 
 console.log(addTask);
-// let addTaskText = addTask.value();
 
 addBtn.addEventListener('click', function(inputTask){
     let taskValue = addTask.value;
-    // console.log(addTask.value)
+    console.log(addTask.value)
 })
 
 Array.from(toDoListTrash).forEach(function(trashBtn){
