@@ -1,5 +1,19 @@
 @import './variables';
 @import './mixins';
+
+#header{
+    margin: 10px auto;
+    text-align: center;
+}
+
+#content{
+    margin: 10px auto;
+    text-align: center;
+
+    h1{
+        margin: 10px;
+    }
+}
 .btn-add{
     background-color: $btn-bg-clr;
     color: $btn-fnt-clr;
