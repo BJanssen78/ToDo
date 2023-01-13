@@ -58,6 +58,7 @@
 }
 .todo-list-item .todo-list-cbx-label {
   width: 80%;
+  text-align: left;
 }
 
 .trash {
