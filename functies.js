@@ -1,3 +1,4 @@
+import { localLink, sendHeaders } from "./variables";
 const toDoList = document.querySelectorAll('#todo-list-conatiner ul');
 console.log(toDoList);
 
@@ -20,6 +21,33 @@ export const createEventToList = function(){
         }
     })
 };
+
+export const showTaskList = async function(){
+
+    try {    
+        const showListFirstTime = await fetch(localLink,
+            {
+                method:'GET',
+                headers: sendHeaders
+            }
+        )
+        .then(response => response.json())
+        .then(response => {
+            console.log(JSON.stringify(response))
+            let showUlTaksList = Object.values(response);
+            console.log(showUlTaskList);
+
+            showUlTaksList.map(element => element)
+            .forEach(element => {
+                console.log(element);
+                createUlTaskList(element);
+            })}
+        )
+    }
+    catch (error){
+        console.log(error)
+    }
+}
 
 export const createUlTaskList = function(element){
     let selectUl = document.getElementById('todo-list');
@@ -47,5 +75,5 @@ export const createUlTaskList = function(element){
     createTrsh.setAttribute("class","material-symbols-outlined trash");
     createTrsh.innerHTML = "delete"
     
-    createEventToList();
+    // createEventToList();
 };
