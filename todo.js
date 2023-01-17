@@ -1,90 +1,42 @@
-import {createUlTaskList} from "./functies.js";
-
 const localLink = 'http://localhost:3000/';
 const sendHeaders = {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
-                    }
-const toDoList = document.querySelectorAll('#todo-list-conatiner .todo-item-cbx');
+                    };
+
+const toDoList = document.querySelectorAll('#todo-list-conatiner ul');
 const toDoListTrash = document.querySelectorAll('#todo-list-conatiner .trash');
 const addBtn = document.querySelector('#btn-add');
 const addTask = document.querySelector('#input-task');
 
+const createUlTaskList = function(element){
+    let selectUl = document.getElementById('todo-list');
+    let createLi = document.createElement('li');
+    let createCbx = document.createElement('input');
+    let createLbl = document.createElement('label');
+    let createTrsh = document.createElement('span');
 
-// console.log(addTask);
+    selectUl.appendChild(createLi);
+    createLi.setAttribute('class', "todo-list-item");
 
+    createLi.appendChild(createCbx);
+    createCbx.setAttribute("title",element.taskDescription);
+    createCbx.setAttribute("type","checkbox");
+    createCbx.setAttribute("id",element.taskDescription);
+    createCbx.setAttribute("name","hallo");
+    createCbx.setAttribute("class","todo-item-cbx");
 
+    createLi.appendChild(createLbl);
+    createLbl.setAttribute("class","todo-list-cbx-label");
+    createLbl.setAttribute("for",element.taskDescription);
+    createLbl.innerHTML = element.taskDescription;
 
-const showTaskList = async function(taskDescription){
-
-    try {    
-        const showListFirstTime = await fetch(localLink,
-            {
-                method:'GET',
-                headers: sendHeaders
-            }
-        )
-        .then(response => response.json())
-        .then(response => {
-            console.log(JSON.stringify(response))
-            let showUlTaksList = Object.values(response);
-
-            showUlTaksList.map(element => element)
-            .forEach(element => {
-                console.log(element);
-                // createUlTaskList(element);
-
-                
-
-            })}
-        )
-    }
-    catch (error){
-        console.log(error)
-    }
-}
+    createLi.appendChild(createTrsh);
+    createTrsh.setAttribute("class","material-symbols-outlined trash");
+    createTrsh.innerHTML = "delete"
+};
 
 
-toDoList.addEventListener('click', function(e){
-    if (e.target.className == 'todo-item-cbx'){
-        const li = e.target.parentElement;
-        let eventName = e.target.title.toString();
-        let eventID = e.target.id;
-        let cbxChecked = document.getElementById(eventID);
-
-        if(cbxChecked.checked == true){
-            const toDoListItem = e.target.parentElement;
-            toDoListItem.classList.add('done');
-        }
-        else{
-            const toDoListItem = e.target.parentElement;
-            toDoListItem.classList.remove('done');
-        };
-    }
-})
-
-// const createEventToList = function(){
-//     toDoList.addEventListener('click', function(e){
-//         if (e.target.className == 'todo-item-cbx'){
-//             const li = e.target.parentElement;
-//             let eventName = e.target.title.toString();
-//             let eventID = e.target.id;
-//             let cbxChecked = document.getElementById(eventID);
-
-//             if(cbxChecked.checked == true){
-//                 const toDoListItem = e.target.parentElement;
-//                 toDoListItem.classList.add('done');
-//             }
-//             else{
-//                 const toDoListItem = e.target.parentElement;
-//                 toDoListItem.classList.remove('done');
-//             };
-//         }
-//     })
-// };
-
-showTaskList();
-// createEventToList();
 
 let sendTaskObject = function(taskDescription){
     fetch(localLink,{
@@ -95,7 +47,7 @@ let sendTaskObject = function(taskDescription){
             "done" : false,
         })
     })
-}
+};
 
 addBtn.addEventListener('click', function(inputTask){
     let taskDescription = addTask.value;
@@ -104,30 +56,75 @@ addBtn.addEventListener('click', function(inputTask){
     sendTaskObject(taskDescription);
     location.reload();
 
-})
-
-Array.from(toDoListTrash).forEach(function(trashBtn){
-    trashBtn.addEventListener('click', function(event){
-        console.log(event);
-        const removeTask = event.target.parentElement;
-        removeTask.parentNode.removeChild(removeTask);
-    })
 });
 
-// Array.from(toDoList).forEach(function(chkBox){
-//     chkBox.addEventListener('click', function(event){
-//         let eventName = event.target.title.toString();
-//         let eventID = event.target.id;
-//         let cbxChecked = document.getElementById(eventID);
+const trashFunction = function(){
+    let trashBtn = document.querySelectorAll('#todo-list-conatiner .trash');
+    Array.from(trashBtn).forEach(function(trashBtn){
+        trashBtn.addEventListener('click', function(event){
+            // console.log(event);
+            const removeTask = event.target.parentElement;
+            // console.log(removeTask);
+            removeTask.parentNode.removeChild(removeTask);
+        })
+    });
+};
 
-//         if(cbxChecked.checked == true){
-//             const toDoListItem = event.target.parentElement;
-//             toDoListItem.classList.add('done');
-//         }
-//         else{
-//             const toDoListItem = event.target.parentElement;
-//             toDoListItem.classList.remove('done');
-//         };
- 
-//     })
-// });
+const showListAtStart = async function(){
+    try {
+        const showAtStart = await fetch(localLink, 
+            {
+                method:'GET',
+                headers: sendHeaders
+            }
+        )
+        .then(response => response.json())
+        .then(response => {
+            let firstTimeTaskList = Object.values(response);
+            firstTimeTaskList.map(e1 => e1).forEach(e2 => {
+                // console.log(e2);
+                createUlTaskList(e2);
+                
+
+                let newUlList = document.querySelectorAll('#todo-list-conatiner ul');
+                let trashBtn = document.querySelectorAll('#todo-list-conatiner .trash');
+                // console.log(newUlList);
+                Array.from(newUlList).forEach(function(checkbox){
+                    checkbox.addEventListener('click', function(e){
+                        if (e.target.className == 'todo-item-cbx'){
+                            const li = e.target.parentElement;
+                            let eventName = e.target.title.toString();
+                            let eventID = e.target.id;
+                            let cbxChecked = document.getElementById(eventID);
+                    
+                            if(cbxChecked.checked == true){
+                                const toDoListItem = e.target.parentElement;
+                                toDoListItem.classList.add('done');
+                            }
+                            else{
+                                const toDoListItem = e.target.parentElement;
+                                toDoListItem.classList.remove('done');
+                            };
+                        }
+                    })
+                })
+                trashFunction();
+                // Array.from(trashBtn).forEach(function(trashBtn){
+                //     // console.log(trashBtn);
+                //     trashBtn.addEventListener('click', function(event){
+                //         // console.log(event);
+                //         const removeTask = event.target.parentElement;
+                //         // console.log(removeTask);
+                //         removeTask.parentNode.removeChild(removeTask);
+                //     })
+                // });
+            }
+            )
+        })
+    }
+    catch (error){
+        console.log(error);
+    }
+};
+
+showListAtStart()

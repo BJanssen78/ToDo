@@ -50,21 +50,21 @@
   border-bottom: 1px solid gray;
 }
 .todo-list-item .todo-item-cbx {
-  width: 10%;
-  transform: scale(1.5);
+  margin: 10px;
+  transform: scale(1.7);
 }
 .todo-list-item .todo-item-cbx:hover {
   border: 5px solid black;
 }
 .todo-list-item .todo-list-cbx-label {
-  width: 80%;
+  width: 87%;
   text-align: left;
 }
 
 .trash {
   color: red;
   float: right;
-  width: 10%;
+  width: 7%;
   text-align: center;
   cursor: pointer;
 }
