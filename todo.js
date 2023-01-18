@@ -22,7 +22,7 @@ const createUlTaskList = function(element){
     createLi.appendChild(createCbx);
     createCbx.setAttribute("title",element.taskDescription);
     createCbx.setAttribute("type","checkbox");
-    createCbx.setAttribute("id",element.taskDescription);
+    createCbx.setAttribute("id",element._id);
     createCbx.setAttribute("name","hallo");
     createCbx.setAttribute("class","todo-item-cbx");
 
@@ -96,6 +96,10 @@ const showListAtStart = async function(){
                             let eventName = e.target.title.toString();
                             let eventID = e.target.id;
                             let cbxChecked = document.getElementById(eventID);
+                            // console.log(e.target.done);
+                            // console.log(eventID);
+                            // console.log(cbxChecked);
+                            // if()
                     
                             if(cbxChecked.checked == true){
                                 const toDoListItem = e.target.parentElement;
@@ -109,15 +113,7 @@ const showListAtStart = async function(){
                     })
                 })
                 trashFunction();
-                // Array.from(trashBtn).forEach(function(trashBtn){
-                //     // console.log(trashBtn);
-                //     trashBtn.addEventListener('click', function(event){
-                //         // console.log(event);
-                //         const removeTask = event.target.parentElement;
-                //         // console.log(removeTask);
-                //         removeTask.parentNode.removeChild(removeTask);
-                //     })
-                // });
+
             }
             )
         })
