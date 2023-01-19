@@ -70,6 +70,19 @@ const trashFunction = function(){
     });
 };
 
+const updateTask = function(eventName, eventID){
+    let taakUpdate = fetch(localLink,
+        {
+            method: 'PUT',
+            headers: sendHeaders,
+            body: JSON.stringify({
+                "taskDescription" : eventName,
+                "done" : true,
+            })
+        }
+        )
+};
+
 const showListAtStart = async function(){
     try {
         const showAtStart = await fetch(localLink, 
@@ -96,14 +109,15 @@ const showListAtStart = async function(){
                             let eventName = e.target.title.toString();
                             let eventID = e.target.id;
                             let cbxChecked = document.getElementById(eventID);
-                            // console.log(e.target.done);
-                            // console.log(eventID);
+                            console.log(eventName);
+                            console.log(eventID);
                             // console.log(cbxChecked);
                             // if()
                     
                             if(cbxChecked.checked == true){
                                 const toDoListItem = e.target.parentElement;
                                 toDoListItem.classList.add('done');
+                                // updateTask(eventName, eventID);
                             }
                             else{
                                 const toDoListItem = e.target.parentElement;
