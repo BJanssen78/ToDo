@@ -5,6 +5,7 @@ const sendHeaders = {
                     };
 
 const toDoList = document.querySelectorAll('#todo-list-conatiner ul');
+const toDoListDone = document.querySelectorAll('#todo-list-container ul');
 const toDoListTrash = document.querySelectorAll('#todo-list-conatiner .trash');
 const addBtn = document.querySelector('#btn-add');
 const addTask = document.querySelector('#input-task');
@@ -71,7 +72,7 @@ const trashFunction = function(){
 };
 
 const updateTask = function(eventName, eventID){
-    let taakUpdate = fetch(localLink,
+    let taakUpdate = fetch(localLink+eventID,
         {
             method: 'PUT',
             headers: sendHeaders,
@@ -94,30 +95,28 @@ const showListAtStart = async function(){
         .then(response => response.json())
         .then(response => {
             let firstTimeTaskList = Object.values(response);
-            firstTimeTaskList.map(e1 => e1).forEach(e2 => {
+            firstTimeTaskList.filter(doneTask => doneTask.done == false)
+            .map(e1 => e1).forEach(e2 => {
                 // console.log(e2);
                 createUlTaskList(e2);
                 
 
                 let newUlList = document.querySelectorAll('#todo-list-conatiner ul');
-                let trashBtn = document.querySelectorAll('#todo-list-conatiner .trash');
-                // console.log(newUlList);
                 Array.from(newUlList).forEach(function(checkbox){
                     checkbox.addEventListener('click', function(e){
                         if (e.target.className == 'todo-item-cbx'){
+                            // console.log(e);
                             const li = e.target.parentElement;
                             let eventName = e.target.title.toString();
                             let eventID = e.target.id;
                             let cbxChecked = document.getElementById(eventID);
-                            console.log(eventName);
-                            console.log(eventID);
-                            // console.log(cbxChecked);
-                            // if()
+                            // console.log(eventName);
+                            // console.log(eventID);
                     
                             if(cbxChecked.checked == true){
                                 const toDoListItem = e.target.parentElement;
                                 toDoListItem.classList.add('done');
-                                // updateTask(eventName, eventID);
+                                updateTask(eventName, eventID);
                             }
                             else{
                                 const toDoListItem = e.target.parentElement;
@@ -136,5 +135,62 @@ const showListAtStart = async function(){
         console.log(error);
     }
 };
+
+const showListAtClick = async function(){
+    try {
+        const showAtStart = await fetch(localLink, 
+            {
+                method:'GET',
+                headers: sendHeaders
+            }
+        )
+        .then(response => response.json())
+        .then(response => {
+            let firstTimeTaskList = Object.values(response);
+            firstTimeTaskList.filter(doneTask => doneTask.done == done)
+            .map(e1 => e1).forEach(e2 => {
+                // console.log(e2);
+                createUlTaskList(e2);
+                
+
+                let newUlList = document.querySelectorAll('#todo-list-container ul');
+                Array.from(newUlList).forEach(function(checkbox){
+                    checkbox.addEventListener('click', function(e){
+                        if (e.target.className == 'todo-item-cbx'){
+                            // console.log(e);
+                            const li = e.target.parentElement;
+                            let eventName = e.target.title.toString();
+                            let eventID = e.target.id;
+                            let cbxChecked = document.getElementById(eventID);
+                            // console.log(eventName);
+                            // console.log(eventID);
+                    
+                            if(cbxChecked.checked == true){
+                                const toDoListItem = e.target.parentElement;
+                                toDoListItem.classList.add('done');
+                                updateTask(eventName, eventID);
+                            }
+                            else{
+                                const toDoListItem = e.target.parentElement;
+                                toDoListItem.classList.remove('done');
+                            };
+                        }
+                    })
+                })
+                trashFunction();
+            }
+            )
+        })
+    }
+    catch (error){
+        console.log(error);
+    }
+};
+
+console.log(toDoListDone);
+
+toDoListDone.addEventListener('click', function(e){
+    showListAtClick();
+})
 
 showListAtStart()
