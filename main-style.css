@@ -80,8 +80,4 @@
 .show-done {
   transform: scale(1.2);
   margin: 10px;
-}
-.show-done::before {
-  content: "Show done";
-  padding: 15px;
 }/*# sourceMappingURL=main-style.css.map */
