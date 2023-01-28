@@ -92,8 +92,19 @@ const trashFunction = function(){
         trashBtn.addEventListener('click', function(event){
             // console.log(event);
             const removeTask = event.target.parentElement;
-            // console.log(removeTask);
-            removeTask.parentNode.removeChild(removeTask);
+            console.log(event.target);
+            let removeTaskId = event.target.parentElement.firstChild.id;
+            console.log(removeTaskId);
+            // console.log(removeTask.id);
+            // removeTask.parentNode.removeChild(removeTask);
+
+            fetch (localLink+removeTaskId,
+                {
+                    method:'delete',
+                    headers: sendHeaders,
+                }
+            )
+            // location.reload();
         })
     });
 };
