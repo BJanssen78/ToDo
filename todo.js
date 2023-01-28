@@ -96,7 +96,7 @@ const trashFunction = function(){
             let removeTaskId = event.target.parentElement.firstChild.id;
             console.log(removeTaskId);
             // console.log(removeTask.id);
-            // removeTask.parentNode.removeChild(removeTask);
+            removeTask.parentNode.removeChild(removeTask);
 
             fetch (localLink+removeTaskId,
                 {
@@ -104,7 +104,7 @@ const trashFunction = function(){
                     headers: sendHeaders,
                 }
             )
-            // location.reload();
+            location.reload();
         })
     });
 };
